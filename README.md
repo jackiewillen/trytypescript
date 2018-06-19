@@ -1,0 +1,1 @@
+这是一个typescript最简单的框架，可以在此基础上尝试typescript的各个特性
