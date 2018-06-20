@@ -1,34 +1,13 @@
-function logClass(target: any) {
+function logProperty(target: any, key: string) {
  
-    // save a reference to the original constructor
-    var original = target;
-   
-    // a utility function to generate instances of a class
-    function construct(constructor, args) {
-      var c : any = function () {
-        return constructor.apply(this, args);
-      }
-      c.prototype = constructor.prototype;
-      return new c();
-    }
-   
-    // the new constructor behaviour
-    var f : any = function (...args) {
-      console.log("New: " + original.name);
-      return construct(original, args);
-    }
-   
-    // copy prototype so intanceof operator still works
-    f.prototype = original.prototype;
-   
-    // return new constructor (will override original)
-    return f;
+    console.log(target);
+    console.log(key);
   }
   
-  @logClass
   class Person { 
-  
+    @logProperty
     public name: string;
+    @logProperty
     public surname: string;
   
     constructor(name : string, surname : string) { 
@@ -37,4 +16,6 @@ function logClass(target: any) {
     }
   }
   
-  var p = new Person("remo", "jansen");
+  var p = new Person("remo", "Jansen");
+  p.surname = "Remo";
+//   var n = p.surname;
